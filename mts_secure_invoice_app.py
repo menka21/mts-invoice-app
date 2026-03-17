@@ -87,6 +87,9 @@ def get_transport(store):
     if "st mary" in s or "campbell" in s:
         return 565
 
+    if "st helen" in s:
+        return None  # editable by user
+
     return 0
 
 
@@ -151,7 +154,12 @@ else:
         tr = get_transport(store)
 
         st.write("Store:", store)
-        st.write("Transport:", tr)
+
+        if tr is None:
+            tr = st.number_input("Enter Transport Amount ($)", min_value=0.0, step=10.0, format="%.2f")
+        else:
+            st.write("Transport:", tr)
+
         st.write("Fumigation:", fu)
 
         if st.button("Generate Invoice"):
