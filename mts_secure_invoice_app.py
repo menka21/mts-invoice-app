@@ -66,10 +66,13 @@ def extract_details(file):
     return inv, store, date, items
 
 
+def is_st_helens(s):
+    return "st helen" in s or "saint helen" in s or "sth helen" in s
+
 def get_fumigation(store):
     s = store.lower()
 
-    if "st mary" in s or "st helen" in s or "campbell" in s:
+    if "st mary" in s or is_st_helens(s) or "campbell" in s:
         return 400
 
     if "king island" in s or "foodworks" in s:
@@ -87,7 +90,7 @@ def get_transport(store):
     if "st mary" in s or "campbell" in s:
         return 565
 
-    if "st helen" in s:
+    if is_st_helens(s):
         return None  # editable by user
 
     return 0
